@@ -1,17 +1,25 @@
 const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-
 const app = express();
-const server = http.createServer(app); // This is the server instance
-const io = new Server(server); // socket.io server on top of HTTP
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+const path = require('path');
 
-app.use(express.static('public'));
+const PORT = process.env.PORT || 3000;
 
+// Serve static files from the "public" folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Optional: Redirect "/" to app.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'app.html'));
+});
+
+// Socket.IO logic
 io.on('connection', (socket) => {
   console.log('A user connected');
 
   socket.on('chat message', (data) => {
+    // Broadcast to all clients
     io.emit('chat message', data);
   });
 
@@ -20,8 +28,7 @@ io.on('connection', (socket) => {
   });
 });
 
-// ✅ This is the correct way
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
+// Start the server
+http.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
