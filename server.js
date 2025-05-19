@@ -14,9 +14,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'app.html'));
 });
 
+let count = 0
 // Socket.IO logic
 io.on('connection', (socket) => {
   console.log('A user connected');
+  count += 1
 
   socket.on('chat message', (data) => {
     // Broadcast to all clients

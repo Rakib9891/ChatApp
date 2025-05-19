@@ -1,21 +1,3 @@
-// function sendMessage() {
-//   const name = document.getElementById("nameInput").value.trim();
-//   const message = document.getElementById("messageInput").value.trim();
-//   const chatBox = document.getElementById("chat-box");
-
-//   if (!name || !message) {
-//     alert("Name and message are required.");
-//     return;
-//   }
-
-//   const messageElement = document.createElement("div");
-//   messageElement.textContent = `${name}: ${message}`;
-//   chatBox.appendChild(messageElement);
-
-//   document.getElementById("messageInput").value = "";
-//   chatBox.scrollTop = chatBox.scrollHeight;
-// }
-
 
 
 const socket = io();
@@ -36,8 +18,19 @@ function sendMessage() {
 // Receive and display messages
 socket.on("chat message", (data) => {
   const chatBox = document.getElementById("chat-box");
-  const msg = document.createElement("div");
-  msg.textContent = `${data.name}: ${data.message}`;
-  chatBox.appendChild(msg);
+  const msgandnam = document.createElement("div")
+  msgandnam.className = "maN"
+  const msg = document.createElement("span");
+  const nam = document.createElement("span");
+  nam.className = "name";
+  nam.textContent = data.name;
+  msg.className = "message";
+  msg.textContent = `${data.message}`;
+
+  // data
+  chatBox.append(msgandnam);
+  msgandnam.append(nam,msg)
   chatBox.scrollTop = chatBox.scrollHeight;
+
 });
+

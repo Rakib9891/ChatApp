@@ -1,15 +1,18 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f0f0f0;
+  background: #078f409b;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
+h2 {
+  color: #007bff;
+}
 
 .chat-container {
   width: 400px;
-  background: white;
+  background: rgb(255, 255, 255);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -17,10 +20,11 @@ body {
 
 .chat-box {
   height: 300px;
-  border: 1px solid #ddd;
+  border: 1px solid #cac9c9;
   overflow-y: auto;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 10px 10px 10px 2px;
+
 }
 
 #nameInput, #messageInput {
@@ -28,6 +32,14 @@ body {
   padding: 10px;
   margin-bottom: 5px;
   box-sizing: border-box;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s;
+  outline-color:#007bff;
+
+}
+
+#nameInput:focus, #messageInput:focus {
+  border-color: #007bff;
 }
 
 button {
@@ -37,4 +49,56 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+.message {
+  margin: 5px 4px;
+  background-color: #0670e1e8;
+  padding: 10px;
+  border-radius: 20px;
+  max-width: max-content;
+  max-height: fit-content;
+  word-wrap: break-word;
+  color: white;
+}
+.message.left {
+  background-color: rgba(16, 104, 192, 0.581);
+}
+.message.right {
+  background-color: rgba(0, 123, 255, 0.5);
+}
+.message.left .name {
+  background-color: rgba(16, 104, 192, 0.581);
+}
+.message.right .name {
+  background-color: rgba(0, 123, 255, 0.5);
+}
+
+
+
+.name{
+  margin: 5px 0;
+  background-color: #53bf7e;
+  padding: 10px 10px 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #18c00f;
+  max-width: max-content;
+  max-height: fit-content;
+  font-weight: bold;
+  word-wrap: break-word;
+  color: white;
+}
+
+.maN{
+  height: 45px;
+  padding: 2px;
+  margin: 3px 0;
+
 }
